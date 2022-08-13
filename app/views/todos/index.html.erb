@@ -1,14 +1,40 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Todos</h1>
-
-<div id="todos">
-  <% @todos.each do |todo| %>
-    <%= render todo %>
-    <p>
-      <%= link_to "Show this todo", todo %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New todo", new_todo_path %>
+<section class="vh-100" style="background-color: #eee;">
+  <div class="py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-9 col-xl-7">
+        <div class="card rounded-3">
+          <div class="card-body p-4">
+            <h4 class="text-center my-3 pb-3">Todo List</h4>
+            <%= search_form_for @search, class: "row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2" do |f| %>
+              <div class="col-12">
+                <%= f.label :title_cont, "Title", class: 'form-label' %>
+                <%= f.search_field :title_cont, class: 'form-control' %>
+              </div>
+              <div class="col-12">
+                <%= f.label :content_cont, "Content", class: 'form-label' %>
+                <%= f.search_field :content_cont, class: 'form-control' %>
+              </div>
+              <div class="col-12">
+                <br />
+                <%= f.submit 'Search', class: 'btn btn-primary' %>
+              </div>
+            <% end %>
+            <%= paginate @todos, theme: 'bootstrap-5' %>
+            <%= link_to "Create", new_todo_path, class: 'btn btn-primary' %>
+            <div class="container m-2 mb-4 text-center">
+              <div class="row">
+                <div class="col-1 p-2 border"><%= sort_link(@search, :id) %></div>
+                <div class="col-3 p-2 border"><%= sort_link(@search, :title) %></div>
+                <div class="col-4 p-2 border"><%= sort_link(@search, :content) %></div>
+                <div class="col-2 p-2 border"></div>
+                <div class="col-2 p-2 border"></div>
+              </div>
+              <%= render @todos %>
+            </div>
+            <%= paginate @todos, theme: 'bootstrap-5' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
