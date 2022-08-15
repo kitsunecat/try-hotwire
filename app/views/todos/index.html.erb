@@ -21,7 +21,7 @@
             <% end %>
             <%= turbo_frame_tag "todo-list" do %>
               <%= paginate @todos, theme: 'bootstrap-5' %>
-              <%= link_to "Create", new_todo_path, class: 'btn btn-primary', data: { turbo_frame: "_top" } %>
+              <%= link_to "Create", new_todo_path, class: 'btn btn-primary', data: { turbo_frame: "new_todo" } %>
               <div class="container m-2 mb-4 text-center">
                 <div class="row">
                   <div class="col-1 p-2 border"><%= sort_link(@search, :id) %></div>
@@ -30,6 +30,7 @@
                   <div class="col-2 p-2 border"></div>
                   <div class="col-2 p-2 border"></div>
                 </div>
+                <%= turbo_frame_tag "new_todo" %>
                 <%= render @todos %>
               </div>
               <%= paginate @todos, theme: 'bootstrap-5' %>
