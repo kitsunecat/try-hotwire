@@ -1,5 +1,15 @@
-<%= bootstrap_form_with(model: todo) do |form| %>
-  <%= form.text_field :title %>
-  <%= form.text_field :content %>
-  <%= form.primary %>
+<%= turbo_frame_tag todo do %>
+  <%= bootstrap_form_with(model: todo) do |form| %>
+    <div class="row">
+      <div class="col-1 border d-flex align-items-center justify-content-center" style="height: 128px"><%= todo.id %></div>
+      <div class="col-3 border d-flex align-items-center justify-content-center" style="height: 128px"><%= form.text_field :title, skip_label: true %></div>
+      <div class="col-4 border d-flex align-items-center justify-content-center" style="height: 128px"><%= form.text_field :content, skip_label: true %></div>
+      <div class="col-2 border d-flex align-items-center justify-content-center" style="height: 128px">
+        <%= form.primary %>
+      </div>
+      <div class="col-2 border d-flex align-items-center justify-content-center" style="height: 128px">
+        <%= link_to "Cancel", todos_path, class: 'btn btn-danger m-1' %>
+      </div>
+    </div>
+  <% end %>
 <% end %>
