@@ -5,18 +5,15 @@
         <div class="card rounded-3">
           <div class="card-body p-4">
             <h4 class="text-center my-3 pb-3">Todo List</h4>
-            <%= search_form_for @search, html: { data: { turbo_frame: "todo-list" } },  class: "row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2" do |f| %>
-              <div class="col-12">
+            <%= search_form_for @search, html: { data: { turbo_frame: "todo-list", controller: "form", action: "input->form#submit" } },
+                                         class: "row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2" do |f| %>
+              <div class="col-6">
                 <%= f.label :title_cont, "Title", class: 'form-label' %>
                 <%= f.search_field :title_cont, class: 'form-control' %>
               </div>
-              <div class="col-12">
+              <div class="col-6">
                 <%= f.label :content_cont, "Content", class: 'form-label' %>
                 <%= f.search_field :content_cont, class: 'form-control' %>
-              </div>
-              <div class="col-12">
-                <br />
-                <%= f.submit 'Search', class: 'btn btn-primary' %>
               </div>
             <% end %>
             <%= turbo_frame_tag "todo-list" do %>
