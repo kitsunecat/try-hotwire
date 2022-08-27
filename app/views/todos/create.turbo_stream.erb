@@ -1,0 +1,3 @@
+<%= turbo_stream.prepend "todos", @todo %>
+<%= turbo_stream.update 'new_todo', "" %>
+<%= turbo_stream.update "flash", partial: "flash" %>

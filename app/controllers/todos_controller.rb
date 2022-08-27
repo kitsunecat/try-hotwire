@@ -23,7 +23,7 @@ class TodosController < ApplicationController
     @todo = Todo.new(todo_params)
 
     if @todo.save
-      redirect_to @todo, notice: 'Todo was successfully created.'
+      flash.now.notice = 'Todo was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end
@@ -32,7 +32,7 @@ class TodosController < ApplicationController
   # PATCH/PUT /todos/1
   def update
     if @todo.update(todo_params)
-      redirect_to @todo, notice: 'Todo was successfully updated.'
+      flash.now.notice = 'Todo was successfully updated.'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -41,7 +41,7 @@ class TodosController < ApplicationController
   # DELETE /todos/1
   def destroy
     @todo.destroy
-    redirect_to todos_path, notice: 'Todo was successfully destroyed.'
+    flash.now.notice = 'Todo was successfully destroyed.'
   end
 
   private

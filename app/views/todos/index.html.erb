@@ -31,7 +31,9 @@
                   <div class="col-2 p-2 border"></div>
                 </div>
                 <%= turbo_frame_tag "new_todo" %>
-                <%= render @todos %>
+                <div id="todos">
+                  <%= render @todos %>
+                </div>
               </div>
               <%= paginate @todos, theme: 'bootstrap-5' %>
             <% end %>
